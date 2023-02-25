@@ -9,6 +9,6 @@ namespace Centaury.Infra.Infrastructure.Repository
 {
     public interface IOfficeRepository
     {
-        Task<IList<Office>> GetOfficesAsync();
+        Task<IEnumerable<Office>> GetOfficesAsync();
     }
 }

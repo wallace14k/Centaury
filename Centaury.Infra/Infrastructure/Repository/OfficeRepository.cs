@@ -12,7 +12,7 @@ namespace Centaury.Infra.Infrastructure.Repository
             _baseContext = baseContext;
         }
 
-        public async Task<IList<Office>> GetOfficesAsync()
+        public async Task<IEnumerable<Office>> GetOfficesAsync()
         {
             try
             {

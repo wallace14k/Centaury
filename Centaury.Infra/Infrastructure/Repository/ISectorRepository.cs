@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Centaury.Domain.Entities;
 
 namespace Centaury.Infra.Infrastructure.Repository
 {
     public interface ISectorRepository
     {
+        Task<IEnumerable<Sector>> GetOfficesAsync();
+        Task<Sector> CreateSectorAsync(Sector sector);
     }
 }

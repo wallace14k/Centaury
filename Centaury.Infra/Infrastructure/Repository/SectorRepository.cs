@@ -12,7 +12,7 @@ namespace Centaury.Infra.Infrastructure.Repository
             _baseContext = baseContext;
         }
 
-        public async Task<IList<Sector>> GetOfficesAsync()
+        public async Task<IEnumerable<Sector>> GetOfficesAsync()
         {
             try
             {
@@ -21,6 +21,19 @@ namespace Centaury.Infra.Infrastructure.Repository
             catch (Exception ex)
             {
 
+                throw ex;
+            }
+        }
+        public async Task<Sector> CreateSectorAsync(Sector sector)
+        {
+            try
+            {
+                await _baseContext.Sector.AddAsync(sector);
+                _baseContext.SaveChanges();
+                return sector;
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
         }
