@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
-using Centaury.Api.Models;
+using Centaury.Api.Models.MapperProfile.Mapper;
 using Centaury.Domain.Entities;
 using Centaury.Infra.Infrastructure.Repository;
 using Microsoft.AspNetCore.Mvc;
+using static Centaury.Api.Models.EmployeeGetRequest;
+using static Centaury.Api.Models.EmployeePostRequest;
 
 namespace Centaury.Api.Controllers
 {
@@ -19,14 +21,14 @@ namespace Centaury.Api.Controllers
             _mapper = mapper;
         }
         [HttpGet]
-        public async Task<IEnumerable<EmployeeGetRequest.SectorGetRequest>> GetSectorAsync()
+        public async Task<List<SectorGetRequest>> GetSectorAsync()
         {
             try
             {
                 var sector = await _sectorRepository.GetOfficesAsync();
                 if (sector != null)
                 {
-                    return _mapper.Map<IEnumerable<EmployeeGetRequest.SectorGetRequest>>(sector);
+                    return sector.ToModel();
                 }
                 else
                 {
@@ -35,12 +37,26 @@ namespace Centaury.Api.Controllers
             }
             catch (Exception ex)
             {
+                throw ex;
+            }
+        }
+        [HttpGet("{id:int}")]
+        public async Task<SectorGetRequest> GetSectorById(int id)
+        {
+            try
+            {
+                var sector = await _sectorRepository.GetSectorAsync(id);
+                return sector.ToModel();
+            }
+            catch (Exception ex)
+            {
 
                 throw ex;
             }
         }
+
         [HttpPost]
-        public async Task<EmployeeGetRequest.SectorGetRequest> CreateSectorAsync(EmployeeGetRequest.SectorGetRequest SectorGetRequest)
+        public async Task<SectorPostRequest> CreateSectorAsync(SectorPostRequest SectorGetRequest)
         {
             try
             {
@@ -50,7 +66,7 @@ namespace Centaury.Api.Controllers
                     var sector = _mapper.Map<Sector>(SectorGetRequest);
                     if (sector != null)
                     {
-                        return _mapper.Map<EmployeeGetRequest.SectorGetRequest>(await _sectorRepository.CreateSectorAsync(sector));
+                        return _mapper.Map<SectorPostRequest>(await _sectorRepository.CreateSectorAsync(sector));
                     }
                     else
                     {

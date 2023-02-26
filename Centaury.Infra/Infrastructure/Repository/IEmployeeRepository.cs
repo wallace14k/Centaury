@@ -4,6 +4,6 @@ namespace Centaury.Infra.Infrastructure.Repository
 {
     public interface IEmployeeRepository
     {
-        Task<IEnumerable<Employee>> GetEmployeeAsync();
+        Task<List<Employee>> GetEmployeeAsync();
     }
 }

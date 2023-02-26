@@ -12,7 +12,7 @@ namespace Centaury.Infra.Infrastructure.Repository
             _baseContext = baseContext;
         }
 
-        public async Task<IEnumerable<Sector>> GetOfficesAsync()
+        public async Task<List<Sector>> GetOfficesAsync()
         {
             try
             {
@@ -24,6 +24,19 @@ namespace Centaury.Infra.Infrastructure.Repository
                 throw ex;
             }
         }
+        public async Task<Sector> GetSectorAsync(int id)
+        {
+            try
+            {
+                return await _baseContext.Sector.FindAsync(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public async Task<Sector> CreateSectorAsync(Sector sector)
         {
             try

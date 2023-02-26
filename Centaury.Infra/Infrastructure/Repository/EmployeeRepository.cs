@@ -12,7 +12,7 @@ namespace Centaury.Infra.Infrastructure.Repository
             _baseContext = baseContext;
         }
 
-        public async Task<IEnumerable<Employee>> GetEmployeeAsync()
+        public async Task<List<Employee>> GetEmployeeAsync()
         {
             try
             {

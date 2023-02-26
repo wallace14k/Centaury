@@ -12,7 +12,7 @@ namespace Centaury.Infra.Infrastructure.Repository
             _baseContext = baseContext;
         }
 
-        public async Task<IEnumerable<Office>> GetOfficesAsync()
+        public async Task<List<Office>> GetOfficesAsync()
         {
             try
             {
@@ -21,6 +21,34 @@ namespace Centaury.Infra.Infrastructure.Repository
             catch (Exception ex)
             {
 
+                throw ex;
+            }
+        }
+
+        public async Task<Office> GetOfficesAsync(int id)
+        {
+            try
+            {
+                return await _baseContext.Offices.FindAsync(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public async Task<Office> CreateOfficeAsync(Office office)
+        {
+            try
+            {
+                await _baseContext.Offices.AddAsync(office);
+                await _baseContext.SaveChangesAsync();    
+                return office;
+
+            }
+            catch (Exception ex)
+            {
                 throw ex;
             }
         }

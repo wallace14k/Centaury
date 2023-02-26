@@ -4,7 +4,8 @@ namespace Centaury.Infra.Infrastructure.Repository
 {
     public interface ISectorRepository
     {
-        Task<IEnumerable<Sector>> GetOfficesAsync();
+        Task<List<Sector>> GetOfficesAsync();
         Task<Sector> CreateSectorAsync(Sector sector);
+        Task<Sector> GetSectorAsync(int id);
     }
 }

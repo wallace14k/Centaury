@@ -1,21 +1,22 @@
 ﻿namespace Centaury.Api.Models
 {
-    public class EmployeeGetRequest
+    public class EmployeePostRequest
     {
         public int Id { get; set; }
         public int Name { get; set; }
         public int Age { get; set; }
-        public OfficeGetRequest Office { get; set; }
-        public SectorGetRequest Sector { get; set; }
+        public OfficePostRequest Office { get; set; }
+        public SectorPostRequest Sector { get; set; }
 
 
-        public class OfficeGetRequest
+        public class OfficePostRequest
         {
             public int Id { get; set; }
             public string Name { get; set; }
-            public  SectorGetRequest SectorGetRequest { get; set; }
+            public int SectorId { get; set; }
+
         }
-        public class SectorGetRequest
+        public class SectorPostRequest
         {
             public int Id { get; set; }
             public string Name { get; set; }

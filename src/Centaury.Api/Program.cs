@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IOfficeRepository, OfficeRepository>();
 builder.Services.AddScoped<ISectorRepository, SectorRepository>();
-builder.Services.AddAutoMapper(typeof(EmployeeMapper));
+builder.Services.AddAutoMapper(typeof(EmployeeGetProfile));
 builder.Services.AddDbContext<BaseContext>(options =>
 options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
 builder.Services.AddControllers();
