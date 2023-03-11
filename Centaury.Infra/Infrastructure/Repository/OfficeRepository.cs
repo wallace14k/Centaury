@@ -29,7 +29,16 @@ namespace Centaury.Infra.Infrastructure.Repository
         {
             try
             {
-                return await _baseContext.Offices.FindAsync(id);
+                var  office = await _baseContext.Offices.FindAsync(id);
+                if (office != null)
+                {
+                    return office;
+                }
+                else
+                {
+                    return null;
+                }
+               
             }
             catch (Exception ex)
             {

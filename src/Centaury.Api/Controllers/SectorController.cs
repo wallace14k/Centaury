@@ -1,10 +1,8 @@
-﻿using AutoMapper;
-using Centaury.Api.Models.MapperProfile.Mapper;
-using Centaury.Domain.Entities;
+﻿using Centaury.Api.Models.MapperProfile.Mapper;
 using Centaury.Infra.Infrastructure.Repository;
 using Microsoft.AspNetCore.Mvc;
-using static Centaury.Api.Models.EmployeeGetRequest;
-using static Centaury.Api.Models.EmployeePostRequest;
+using static Centaury.Api.Models.EmployeePostViewModel;
+using static Centaury.Api.Models.EmployeeViewModel;
 
 namespace Centaury.Api.Controllers
 {
@@ -13,15 +11,13 @@ namespace Centaury.Api.Controllers
     public class SectorController : ControllerBase
     {
         private readonly ISectorRepository _sectorRepository;
-        private readonly IMapper _mapper;
 
-        public SectorController(ISectorRepository sectorRepository, IMapper mapper)
+        public SectorController(ISectorRepository sectorRepository)
         {
             _sectorRepository = sectorRepository;
-            _mapper = mapper;
         }
         [HttpGet]
-        public async Task<List<SectorGetRequest>> GetSectorAsync()
+        public async Task<List<SectorViewModel>> GetSectorAsync()
         {
             try
             {
@@ -41,47 +37,31 @@ namespace Centaury.Api.Controllers
             }
         }
         [HttpGet("{id:int}")]
-        public async Task<SectorGetRequest> GetSectorById(int id)
+        public async Task<SectorViewModel> GetSectorById(int id)
         {
-            try
-            {
-                var sector = await _sectorRepository.GetSectorAsync(id);
-                return sector.ToModel();
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
+            var sector = await _sectorRepository.GetSectorAsync(id);
+            return sector.ToModel();
         }
 
         [HttpPost]
-        public async Task<SectorPostRequest> CreateSectorAsync(SectorPostRequest SectorGetRequest)
+        public async Task<ActionResult<SectorPostViewModel>> CreateSectorAsync(SectorPostViewModel sectorGetRequest)
         {
-            try
-            {
 
-                if (SectorGetRequest != null)
+            if (sectorGetRequest != null)
+            {
+                var sector = sectorGetRequest.ToPostEntity();
+                if (sector != null)
                 {
-                    var sector = _mapper.Map<Sector>(SectorGetRequest);
-                    if (sector != null)
-                    {
-                        return _mapper.Map<SectorPostRequest>(await _sectorRepository.CreateSectorAsync(sector));
-                    }
-                    else
-                    {
-                        return null;
-                    }
+                    return (await _sectorRepository.CreateSectorAsync(sector)).ToPostModel();
                 }
                 else
                 {
-                    return null;
+                    return BadRequest("Erro favor contatar o administrador");
                 }
             }
-            catch (Exception ex)
+            else
             {
-
-                throw ex;
+                return BadRequest("não foi possivel inserir o novo setor");
             }
         }
     }

@@ -16,7 +16,7 @@ namespace Centaury.Infra.Infrastructure.Repository
         {
             try
             {
-                return await _baseContext.Sector.Include(o => o.Offices).ToListAsync();
+                return await _baseContext.Sector.Include(x => x.Offices).ToListAsync();
             }
             catch (Exception ex)
             {

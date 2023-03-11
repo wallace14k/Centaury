@@ -3,6 +3,7 @@ using System;
 using Centaury.Infra.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Centaury.Infra.Migrations
 {
     [DbContext(typeof(BaseContext))]
-    partial class BaseContextModelSnapshot : ModelSnapshot
+    [Migration("20230311152149_alteração da classe Sector")]
+    partial class alteraçãodaclasseSector
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,14 +38,8 @@ namespace Centaury.Infra.Migrations
                     b.Property<int>("Age")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Document")
-                        .IsRequired()
-                        .HasMaxLength(11)
-                        .HasColumnType("character varying(11)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("Name")
+                        .HasColumnType("integer");
 
                     b.Property<int>("OfficeId")
                         .HasColumnType("integer");
@@ -136,17 +132,12 @@ namespace Centaury.Infra.Migrations
             modelBuilder.Entity("Centaury.Domain.Entities.Office", b =>
                 {
                     b.HasOne("Centaury.Domain.Entities.Sector", "Sector")
-                        .WithMany("Offices")
+                        .WithMany()
                         .HasForeignKey("SectorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Sector");
-                });
-
-            modelBuilder.Entity("Centaury.Domain.Entities.Sector", b =>
-                {
-                    b.Navigation("Offices");
                 });
 #pragma warning restore 612, 618
         }

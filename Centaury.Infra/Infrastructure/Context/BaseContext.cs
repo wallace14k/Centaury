@@ -19,9 +19,7 @@ namespace Centaury.Infra.Infrastructure.Context
             modelBuilder.Entity<Sector>().HasKey(x => x.Id);
 
             modelBuilder.Entity<Office>()
-                .HasOne(p => p.Sector)
-                .WithMany(b => b.Offices)
-                .HasForeignKey(x => x.SectorId);
+                .HasOne(p => p.Sector);
 
         }
     }
