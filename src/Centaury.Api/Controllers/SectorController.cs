@@ -1,5 +1,5 @@
 ﻿using Centaury.Api.Models.MapperProfile.Mapper;
-using Centaury.Infra.Infrastructure.Repository;
+using Centaury.Api.Infra.Infrastructure.Repository;
 using Microsoft.AspNetCore.Mvc;
 using static Centaury.Api.Models.EmployeePostViewModel;
 using static Centaury.Api.Models.EmployeeViewModel;

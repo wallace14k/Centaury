@@ -1,8 +1,9 @@
 ﻿using Centaury.Domain.Entities;
-using Centaury.Infra.Infrastructure.Context;
+using Centaury.Api.Infra.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
+using Centaury.Api.Infra.Infrastructure.Repository;
 
-namespace Centaury.Infra.Infrastructure.Repository
+namespace Centaury.Api.Infra.Infrastructure.Repository
 {
     public class EmployeeRepository : IEmployeeRepository
     {

@@ -1,7 +1,7 @@
 ﻿using Centaury.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Centaury.Infra.Infrastructure.Context
+namespace Centaury.Api.Infra.Infrastructure.Context
 {
     public class BaseContext : DbContext
     {

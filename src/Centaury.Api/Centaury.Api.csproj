@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Centaury.Infra\Centaury.Infra.csproj" />
+    <ProjectReference Include="..\Centaury.Infra\Centaury.Infra.csproj" />
   </ItemGroup>
 
 </Project>

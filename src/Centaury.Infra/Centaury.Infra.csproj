@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Centaury.Domain\Centaury.Domain.csproj" />
+    <ProjectReference Include="..\Centaury.Domain\Centaury.Domain.csproj" />
   </ItemGroup>
 
 </Project>

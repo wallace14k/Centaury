@@ -1,6 +1,6 @@
 using Centaury.Api.Models.Mapper;
-using Centaury.Infra.Infrastructure.Context;
-using Centaury.Infra.Infrastructure.Repository;
+using Centaury.Api.Infra.Infrastructure.Context;
+using Centaury.Api.Infra.Infrastructure.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerUI;
