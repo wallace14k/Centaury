@@ -9,14 +9,12 @@ namespace Centaury.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class OfficeController : ControllerBase
+    public class OfficesController : ControllerBase
     {
-        private readonly IMapper _mapper;
         private readonly IOfficeRepository _officeRepository;
 
-        public OfficeController(IMapper mapper, IOfficeRepository officeRepository)
+        public OfficesController(IOfficeRepository officeRepository)
         {
-            _mapper = mapper;
             _officeRepository = officeRepository;
         }
 
